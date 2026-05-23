@@ -46,11 +46,13 @@ def create_app():
     from app.routes.treinos import treinos_bp
     from app.routes.planos import planos_bp
     from app.routes.exercicios import exercicios_bp
+    from app.routes.alunos import alunos_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(treinos_bp)
     app.register_blueprint(planos_bp)
     app.register_blueprint(exercicios_bp)
+    app.register_blueprint(alunos_bp)
 
     # =========================
     # HOME

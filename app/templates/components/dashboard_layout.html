@@ -43,7 +43,7 @@
 
             <a
                 class="{% if request.endpoint == 'perfil' %}active{% endif %}"
-                href="#"
+                href="{{ url_for('alunos.perfil') }}"
             >
                 Perfil
             </a>

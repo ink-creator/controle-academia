@@ -1,0 +1,141 @@
+{% extends 'components/dashboard_layout.html' %}
+
+{% block title %}
+Perfil
+{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+
+    <h1>Meu Perfil</h1>
+
+    <p>
+        Atualize suas informações.
+    </p>
+
+</div>
+
+<section class="perfil-container">
+
+    <form method="POST" class="perfil-form">
+
+        <div class="perfil-grid">
+
+            <div class="input-group">
+
+                <label>Nome</label>
+
+                <input
+                    type="text"
+                    name="nome"
+                    value="{{ current_user.nome }}"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    value="{{ current_user.email }}"
+                    disabled
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Idade</label>
+
+                <input
+                    type="number"
+                    name="idade"
+                    value="{{ current_user.idade or '' }}"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Peso (kg)</label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    name="peso"
+                    value="{{ current_user.peso or '' }}"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Altura (m)</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    name="altura"
+                    value="{{ current_user.altura or '' }}"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Objetivo</label>
+
+                <select name="objetivo">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option
+                        value="Hipertrofia"
+                        {% if current_user.objetivo == "Hipertrofia" %}
+                        selected
+                        {% endif %}
+                    >
+                        Hipertrofia
+                    </option>
+
+                    <option
+                        value="Emagrecimento"
+                        {% if current_user.objetivo == "Emagrecimento" %}
+                        selected
+                        {% endif %}
+                    >
+                        Emagrecimento
+                    </option>
+
+                    <option
+                        value="Condicionamento"
+                        {% if current_user.objetivo == "Condicionamento" %}
+                        selected
+                        {% endif %}
+                    >
+                        Condicionamento
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="auth-btn"
+        >
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
