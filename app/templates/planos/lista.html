@@ -1,0 +1,54 @@
+{% extends 'components/dashboard_layout.html' %}
+
+{% block title %}
+Planos
+{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+
+    <h1>Planos da Academia</h1>
+
+    <p>
+        Escolha o plano ideal para você.
+    </p>
+
+</div>
+
+<div class="cards-grid">
+
+    {% for plano in planos %}
+
+        <div class="card">
+
+            <h2>{{ plano.nome }}</h2>
+
+            <h3>
+                R$ {{ "%.2f"|format(plano.preco) }}
+            </h3>
+
+            <p>
+                {{ plano.descricao }}
+            </p>
+
+            <span>
+                {{ plano.duracao_meses }} meses
+            </span>
+
+            <br><br>
+
+            <a
+                href="{{ url_for('planos.assinar', id=plano.id) }}"
+                class="auth-btn"
+            >
+                Assinar
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -12,7 +12,8 @@ IGNORAR_PASTAS = [
     ".env",
     "Scripts",
     "pyvenv.cfg",
-    ".venv"
+    ".venv",
+    "static",
 ]
 
 def ler_pastas(caminho, arquivo_saida, nivel=0):

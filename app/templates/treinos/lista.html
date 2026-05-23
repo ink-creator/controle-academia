@@ -1,0 +1,78 @@
+{% extends 'components/dashboard_layout.html' %}
+
+{% block title %}
+Treinos
+{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+
+    <h1>Meus Treinos</h1>
+
+    <p>
+        Gerencie seus treinos.
+    </p>
+
+</div>
+
+<a
+    href="{{ url_for('treinos.criar') }}"
+    class="auth-btn"
+>
+    Novo Treino
+</a>
+
+<br><br>
+
+{% if treinos %}
+
+<div class="treinos-grid">
+
+    {% for treino in treinos %}
+
+        <div class="treino-card">
+
+            <h3>
+                {{ treino.nome }}
+            </h3>
+
+            <p>
+                {{ treino.descricao }}
+            </p>
+
+            <span>
+                {{ treino.categoria }}
+            </span>
+
+            <br><br>
+
+            <a href="{{ url_for('treinos.editar', id=treino.id) }}">
+                Editar
+            </a>
+
+            |
+
+            <a href="{{ url_for('treinos.excluir', id=treino.id) }}">
+                Excluir
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-state">
+
+    <p>
+        Nenhum treino cadastrado.
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

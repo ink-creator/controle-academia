@@ -1,0 +1,103 @@
+{% extends 'components/dashboard_layout.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block dashboard_content %}
+
+<header class="dashboard-header">
+
+    <div>
+
+        <h1>
+            Olá, {{ current_user.nome }}
+        </h1>
+
+        <p>
+            Bem-vindo ao painel da academia.
+        </p>
+
+    </div>
+
+</header>
+
+<section class="cards-grid">
+
+    <div class="card">
+
+        <h3>Plano Atual</h3>
+
+        <p>
+            {% if current_user.plano %}
+                {{ current_user.plano.nome }}
+            {% else %}
+                Sem plano
+            {% endif %}
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Treinos</h3>
+
+        <p>
+            {{ current_user.treinos|length }}
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Objetivo</h3>
+
+        <p>
+            {{ current_user.objetivo or 'Não definido' }}
+        </p>
+
+    </div>
+
+</section>
+
+<section class="dashboard-section">
+
+    <div class="section-title">
+        <h2>Meus Treinos</h2>
+    </div>
+
+    {% if current_user.treinos %}
+
+        <div class="treinos-grid">
+
+            {% for treino in current_user.treinos %}
+
+                <div class="treino-card">
+
+                    <h3>{{ treino.nome }}</h3>
+
+                    <p>{{ treino.descricao }}</p>
+
+                    <span>{{ treino.categoria }}</span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <p>
+                Você ainda não possui treinos cadastrados.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -7,6 +7,7 @@ from werkzeug.security import (
     check_password_hash
 )
 
+
 class Usuario(UserMixin, db.Model):
 
     __tablename__ = "usuarios"
@@ -32,11 +33,47 @@ class Usuario(UserMixin, db.Model):
         nullable=False
     )
 
+    idade = db.Column(
+        db.Integer
+    )
+
+    peso = db.Column(
+        db.Float
+    )
+
+    altura = db.Column(
+        db.Float
+    )
+
+    objetivo = db.Column(
+        db.String(100)
+    )
+
+    foto = db.Column(
+        db.String(255)
+    )
+
+    admin = db.Column(
+        db.Boolean,
+        default=False
+    )
+
+    plano_id = db.Column(
+        db.Integer,
+        db.ForeignKey("planos.id")
+    )
+
     def definir_senha(self, senha):
+
         self.senha = generate_password_hash(senha)
 
     def verificar_senha(self, senha):
+
         return check_password_hash(
             self.senha,
             senha
         )
+
+    def __repr__(self):
+
+        return f"<Usuario {self.nome}>"

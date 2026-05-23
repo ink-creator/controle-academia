@@ -7,6 +7,9 @@ class Config:
         "chave-super-segura"
     )
 
-    SQLALCHEMY_DATABASE_URI = "sqlite:///academia.db"
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+    SQLALCHEMY_DATABASE_URI = \
+        "sqlite:///" + os.path.join(BASE_DIR, "academia.db")
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False

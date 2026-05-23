@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Academia</h2>
+        </div>
+
+        <nav class="menu">
+
+            <a
+                class="{% if request.endpoint == 'auth.dashboard' %}active{% endif %}"
+                href="{{ url_for('auth.dashboard') }}"
+            >
+                Dashboard
+            </a>
+
+            <a
+                class="{% if request.endpoint == 'treinos.lista' %}active{% endif %}"
+                href="{{ url_for('treinos.lista') }}"
+            >
+                Meus Treinos
+            </a>
+
+            <a
+                class="{% if request.endpoint == 'planos.lista' %}active{% endif %}"
+                href="{{ url_for('planos.lista') }}"
+            >
+                Planos
+            </a>
+
+            <a
+                class="{% if request.endpoint == 'exercicios.lista' %}active{% endif %}"
+                href="{{ url_for('exercicios.lista') }}"
+            >
+                Exercícios
+            </a>
+
+            <a
+                class="{% if request.endpoint == 'perfil' %}active{% endif %}"
+                href="#"
+            >
+                Perfil
+            </a>
+
+            <a href="{{ url_for('auth.logout') }}">
+                Sair
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="dashboard-content">
+
+        {% block dashboard_content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
+{% endblock %}
