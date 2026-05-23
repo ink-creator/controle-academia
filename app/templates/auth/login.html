@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="auth-container">
+
+    <div class="auth-box">
+
+        <div class="auth-header">
+
+            <h1>Entrar</h1>
+
+            <p>
+                Faça login para acessar
+                seus treinos e progresso.
+            </p>
+
+        </div>
+
+        <form
+            method="POST"
+            class="auth-form"
+        >
+
+            <div class="input-group">
+
+                <label>E-mail</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Senha</label>
+
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="auth-btn"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            <p>
+                Não possui conta?
+                <a href="{{ url_for('auth.cadastro') }}">
+                    Criar conta
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
