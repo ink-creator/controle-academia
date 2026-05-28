@@ -1,71 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'components/dashboard_layout.html' %}
 
-{% block title %}
-Editar Treino
-{% endblock %}
+{% block title %}Editar Treino{% endblock %}
 
-{% block content %}
+{% block dashboard_content %}
 
-<section class="auth-container">
+<div class="dashboard-header">
+    <div>
+        <h1>Editar Treino</h1>
+        <p>Atualize as informações do treino.</p>
+    </div>
+    <a href="{{ url_for('treinos.lista') }}" class="auth-btn" style="background:transparent;border:1px solid var(--border);color:var(--text-soft);">
+        ← Voltar
+    </a>
+</div>
 
-    <div class="auth-box">
+<div class="perfil-container">
+    <form method="POST" class="perfil-form">
 
-        <div class="auth-header">
-
-            <h1>Editar Treino</h1>
-
+        <div class="input-group">
+            <label>Nome do Treino</label>
+            <input type="text" name="nome" value="{{ treino.nome }}" required>
         </div>
 
-        <form method="POST" class="auth-form">
+        <div class="input-group">
+            <label>Descrição</label>
+            <input type="text" name="descricao" value="{{ treino.descricao }}">
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
+            <label>Categoria</label>
+            <input type="text" name="categoria" value="{{ treino.categoria }}" placeholder="Ex: Peito, Costas...">
+        </div>
 
-                <label>Nome</label>
+        <div style="margin-top:8px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <button type="submit" class="auth-btn">Salvar Alterações</button>
+            <a href="{{ url_for('treinos.excluir', id=treino.id) }}"
+               onclick="return confirm('Tem certeza que deseja excluir este treino?')"
+               style="font-size:0.8rem;color:var(--danger);">
+                Excluir treino
+            </a>
+        </div>
 
-                <input
-                    type="text"
-                    name="nome"
-                    value="{{ treino.nome }}"
-                    required
-                >
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Descrição</label>
-
-                <input
-                    type="text"
-                    name="descricao"
-                    value="{{ treino.descricao }}"
-                >
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Categoria</label>
-
-                <input
-                    type="text"
-                    name="categoria"
-                    value="{{ treino.categoria }}"
-                >
-
-            </div>
-
-            <button
-                type="submit"
-                class="auth-btn"
-            >
-                Salvar Alterações
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
+    </form>
+</div>
 
 {% endblock %}
